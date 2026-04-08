@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ville's Coffee - Inicio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="cart-tab">
+    <span>Carrinho</span>
+    <span id="cart-count">0</span>
+  </div>
+
+  <div id="cart-sidebar" class="cart-sidebar">
+    <div class="cart-header">
+      <h2>Seu Pedido</h2>
+      <span class="close-cart" id="close-cart-btn">×</span>
+    </div>
+
+    <div class="delivery-type">
+      <h3>Tipo de Entrega</h3>
+      <div class="delivery-options">
+        <div class="delivery-option" data-type="presencial">
+          <input type="radio" name="deliveryType" id="presencial" value="presencial" checked>
+          <label for="presencial">Presencial</label>
+        </div>
+        <div class="delivery-option" data-type="entrega">
+          <input type="radio" name="deliveryType" id="entrega" value="entrega">
+          <label for="entrega">Entrega</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="delivery-form" id="delivery-form">
+      <label>Nome completo *</label>
+      <input type="text" id="customer-name" placeholder="Digite seu nome completo" maxlength="100">
+      
+      <label>Endereço de entrega *</label>
+      <input type="text" id="street" placeholder="Rua/Avenida" maxlength="150">
+      <div class="address-row">
+        <input type="text" id="number" placeholder="Número" maxlength="10">
+        <input type="text" id="complement" placeholder="Complemento (opcional)" maxlength="50">
+      </div>
+      <input type="text" id="neighborhood" placeholder="Bairro" maxlength="100">
+      <div class="address-row">
+        <input type="text" id="city" placeholder="Cidade" maxlength="100">
+        <input type="text" id="zipcode" placeholder="CEP" maxlength="9">
+      </div>
+      
+      <label>Telefone para contato *</label>
+      <input type="tel" id="customer-phone" placeholder="(00) 00000-0000" maxlength="16">
+      <div class="phone-hint">Formato: (DDD) 99999-9999</div>
+      
+      <label>Observações (opcional)</label>
+      <textarea id="delivery-notes" placeholder="Ponto de referência, etc..." maxlength="200"></textarea>
+    </div>
+
+    <div class="table-selector" id="table-selector">
+      <label for="table-number">Mesa:</label>
+      <select id="table-number">
+        <option value="">Selecione a mesa</option>
+        <option value="1">Mesa 1</option>
+        <option value="2">Mesa 2</option>
+        <option value="3">Mesa 3</option>
+        <option value="4">Mesa 4</option>
+        <option value="5">Mesa 5</option>
+        <option value="6">Mesa 6</option>
+        <option value="7">Mesa 7</option>
+        <option value="8">Mesa 8</option>
+        <option value="9">Mesa 9</option>
+        <option value="10">Mesa 10</option>
+      </select>
+    </div>
+
+    <div class="payment-methods">
+      <h3>Forma de Pagamento</h3>
+      <div class="payment-options" id="payment-options"></div>
+    </div>
+
+    <ul id="cart-items-list"></ul>
+    <div class="cart-footer">
+      <div id="cart-total">Total: R$ 0,00</div>
+      <button class="btn-checkout" id="checkout-btn">Finalizar Pedido</button>
+    </div>
+  </div>
+
+  <div id="payment-modal" class="payment-modal">
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+
+  <header>
+    <h1>Ville's Coffee - Livraria</h1>
+  </header>
+
+  <button id="btn-menu">EXPLORAR</button>
+
+  <aside class="sidebar" id="sidebar">
+    <div style="font-size: 40px; margin-bottom: 20px;">📚</div>
+    <h2>Explorar</h2>
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="Cardapio.html">Cardápio</a></li>
+      <li><a href="Livraria.html">Livraria</a></li>
+      <li><a href="AreaVerde.html">Área Verde</a></li>
+      <li><a href="SobreNos.html">Sobre Nós</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+    <h2 class="section-title">Nossa Livraria</h2>
+    <div class="livraria-container">
+      <div class="books-grid" id="books-grid"></div>
+      <div class="sinopse-area" id="sinopse-area">
+        <div class="empty-sinopse">✨ Clique em um livro para ver a sinopse ✨</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ==================== LIVROS COMPLETOS COM SINOPSE ORIGINAL ====================
+    const booksData = [
+      {
+        id: 1,
+        name: "O Alquimista",
+        author: "Paulo Coelho",
+        price: 49.90,
+        sinopse: "Uma jornada inspiradora sobre seguir seus sonhos e ouvir o coração. Santiago, um jovem pastor andaluz, viaja do sul da Espanha ao Egito em busca de um tesouro, encontrando lições valiosas pelo caminho. Um clássico moderno que já encantou milhões de leitores ao redor do mundo. Através de suas andanças, Santiago aprende que o verdadeiro tesouro está na jornada e na sabedoria adquirida ao longo do caminho. Uma fábula sobre a importância de perseguir nossos sonhos e ouvir a linguagem do universo.",
+        image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=500"
+      },
+      {
+        id: 2,
+        name: "Dom Casmurro",
+        author: "Machado de Assis",
+        price: 39.90,
+        sinopse: "A obra-prima de Machado de Assis narra a história de Bentinho e Capitu, um casal marcado pelo ciúme e pela dúvida. Com uma narrativa envolvente e cheia de ironia, o livro questiona a memória, a verdade e a loucura, deixando uma das maiores interrogações da literatura brasileira: Capitu traiu ou não traiu Bentinho? Através dos olhos do protagonista, somos levados a refletir sobre a natureza do ciúme e a fragilidade das relações humanas no Rio de Janeiro do século XIX.",
+        image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=500"
+      },
+      {
+        id: 3,
+        name: "1984",
+        author: "George Orwell",
+        price: 54.90,
+        sinopse: "Um romance distópico que se passa em uma sociedade totalitária onde o Grande Irmão vigia todos os passos. Winston Smith tenta resistir ao controle do Partido e busca liberdade em meio à opressão. Uma crítica poderosa ao autoritarismo que permanece atual e assustadoramente relevante. Orwell cria um mundo onde a verdade é manipulada, a história é reescrita constantemente e a liberdade individual é completamente suprimida. Um alerta sobre os perigos do poder absoluto e da vigilância em massa.",
+        image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=500"
+      },
+      {
+        id: 4,
+        name: "O Pequeno Príncipe",
+        author: "Antoine de Saint-Exupéry",
+        price: 34.90,
+        sinopse: "Uma fábula poética e filosófica sobre amizade, amor e o sentido da vida. O encontro de um piloto com um pequeno príncipe vindo de outro planeta revela lições profundas sobre a essência humana e a importância do olhar do coração. 'O essencial é invisível aos olhos' é uma das mensagens centrais deste livro encantador que conquistou leitores de todas as idades. Uma obra que nos convida a redescobrir a criança interior e a valorizar as coisas simples da vida.",
+        image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=500"
+      },
+      {
+        id: 5,
+        name: "A Culpa é das Estrelas",
+        author: "John Green",
+        price: 44.90,
+        sinopse: "Hazel e Augustus, dois adolescentes com câncer, se conhecem em um grupo de apoio e vivem um romance intenso e emocionante. Uma história que mistura humor, dor e amor, mostrando que a vida, mesmo breve, pode ser extraordinária. Eles embarcam em uma jornada para encontrar o autor de um livro que marcou suas vidas, descobrindo que o amor e a perda andam de mãos dadas. Uma reflexão profunda sobre o significado da vida, da morte e do legado que deixamos.",
+        image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=500"
+      },
+      {
+        id: 6,
+        name: "Sapiens",
+        author: "Yuval Noah Harari",
+        price: 69.90,
+        sinopse: "Uma jornada fascinante pela história da humanidade, desde o surgimento do Homo sapiens até os dias atuais. Harari explora as revoluções cognitiva, agrícola e científica que moldaram nossa espécie e o mundo como conhecemos. O livro questiona nossas crenças mais fundamentais sobre o progresso, a felicidade e o futuro da humanidade. Uma obra que nos faz refletir sobre de onde viemos, para onde vamos e o que realmente significa ser humano em um mundo cada vez mais complexo.",
+        image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=500"
+      }
+    ];
+
+    let cart = [];
+    let selectedBookId = null;
+    let deliveryType = "presencial";
+    let paymentMethod = "balcao";
+
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const cartTab = document.getElementById('cart-tab');
+    const closeCartBtn = document.getElementById('close-cart-btn');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const tableSelect = document.getElementById('table-number');
+    const tableSelectorDiv = document.getElementById('table-selector');
+    const deliveryFormDiv = document.getElementById('delivery-form');
+    const paymentOptionsDiv = document.getElementById('payment-options');
+    const modal = document.getElementById('payment-modal');
+    const modalContent = document.getElementById('modal-content');
+    const booksGrid = document.getElementById('books-grid');
+    const sinopseArea = document.getElementById('sinopse-area');
+
+    const phoneInput = document.getElementById('customer-phone');
+    phoneInput.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 11) value = value.slice(0, 11);
+      if (value.length >= 2 && value.length <= 10) {
+        value = value.replace(/^(\d{2})(\d{4,5})(\d{0,4})/, '($1) $2-$3');
+      } else if (value.length > 10) {
+        value = value.replace(/^(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+      }
+      e.target.value = value;
+    });
+
+    function openCart() { cartSidebar.classList.add('active'); }
+    function closeCart() { cartSidebar.classList.remove('active'); }
+
+    cartTab.onclick = (e) => { e.stopPropagation(); cartSidebar.classList.toggle('active'); };
+    closeCartBtn.onclick = (e) => { e.stopPropagation(); closeCart(); };
+
+    function updateQuantity(name, delta, event) {
+      if (event) event.stopPropagation();
+      const index = cart.findIndex(i => i.name === name);
+      if (index !== -1) {
+        const newQty = cart[index].qty + delta;
+        if (newQty <= 0) cart.splice(index, 1);
+        else cart[index].qty = newQty;
+        updateCart();
+      }
+    }
+
+    function addToCart(name, price) {
+      const existing = cart.find(i => i.name === name);
+      if (existing) existing.qty++;
+      else cart.push({ name, price, qty: 1 });
+      updateCart();
+      openCart();
+    }
+
+    function updateCart() {
+      const list = document.getElementById('cart-items-list');
+      const count = document.getElementById('cart-count');
+      const totalEl = document.getElementById('cart-total');
+      
+      list.innerHTML = '';
+      let sum = 0, qtyTotal = 0;
+      if (cart.length === 0) list.innerHTML = '<div class="empty-cart">Seu carrinho está vazio</div>';
+      else {
+        cart.forEach(item => {
+          const li = document.createElement('li');
+          li.className = 'cart-item';
+          li.innerHTML = `
+            <div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div></div>
+            <div class="cart-item-controls"><button class="qty-minus" data-name="${item.name}">-</button><span>${item.qty}</span><button class="qty-plus" data-name="${item.name}">+</button></div>
+            <div class="cart-item-total">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</div>
+          `;
+          list.appendChild(li);
+          sum += item.price * item.qty;
+          qtyTotal += item.qty;
+        });
+        document.querySelectorAll('.qty-minus').forEach(btn => { btn.onclick = (e) => { updateQuantity(btn.dataset.name, -1, e); }; });
+        document.querySelectorAll('.qty-plus').forEach(btn => { btn.onclick = (e) => { updateQuantity(btn.dataset.name, 1, e); }; });
+      }
+      count.innerText = qtyTotal;
+      totalEl.innerText = `Total: R$ ${sum.toFixed(2).replace('.', ',')}`;
+    }
+
+    function updatePaymentOptions() {
+      if (deliveryType === "presencial") {
+        paymentOptionsDiv.innerHTML = `
+          <div class="payment-option" data-payment="balcao">
+            <input type="radio" name="paymentMethod" id="balcao" value="balcao" checked>
+            <label for="balcao">Pagamento no Balcão</label>
+            <span class="payment-icon">💰</span>
+          </div>
+        `;
+        paymentMethod = "balcao";
+      } else {
+        paymentOptionsDiv.innerHTML = `
+          <div class="payment-option" data-payment="pix">
+            <input type="radio" name="paymentMethod" id="pix" value="pix" checked>
+            <label for="pix">PIX (Pagamento Online)</label>
+            <span class="payment-icon">📱</span>
+          </div>
+          <div class="payment-option" data-payment="cartao">
+            <input type="radio" name="paymentMethod" id="cartao" value="cartao">
+            <label for="cartao">Cartão de Crédito (Online)</label>
+            <span class="payment-icon">💳</span>
+          </div>
+        `;
+        paymentMethod = "pix";
+      }
+      
+      document.querySelectorAll('.payment-option').forEach(opt => {
+        const radio = opt.querySelector('input');
+        radio.onchange = () => {
+          if (radio.checked) {
+            paymentMethod = radio.value;
+            document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+          }
+        };
+        if (radio.checked) opt.classList.add('selected');
+      });
+    }
+
+    function showPixModal(total) {
+      const pixKey = "ville.coffee@pagamentos.com.br";
+      const qrData = `00020126360014br.gov.bcb.pix0114${pixKey.replace(/[^a-z0-9]/gi, '')}5204000053039865404${total.toFixed(2).replace('.', '')}5802BR5925Ville's Coffee Livraria6009SAO PAULO62240520${Math.floor(Date.now() / 1000)}6304`;
+      
+      modalContent.innerHTML = `
+        <div class="modal-header"><h3>Pagamento via PIX</h3><span class="close-modal">&times;</span></div>
+        <div class="pix-container">
+          <p>Valor: <strong>R$ ${total.toFixed(2).replace('.', ',')}</strong></p>
+          <div class="qr-code" id="qr-code"></div>
+          <div class="pix-code"><strong>Chave PIX:</strong><br>${pixKey}</div>
+          <button class="btn-copy" onclick="copyPixKey('${pixKey}')">📋 Copiar Chave PIX</button>
+          <button class="btn-pay" id="confirm-pix">✅ Confirmar Pagamento</button>
+        </div>
+      `;
+      
+      setTimeout(() => {
+        new QRCode(document.getElementById("qr-code"), { text: qrData, width: 200, height: 200 });
+      }, 100);
+      
+      document.querySelector('.close-modal').onclick = () => modal.classList.remove('active');
+      document.getElementById('confirm-pix').onclick = () => {
+        modal.classList.remove('active');
+        finalizeOrder(true);
+      };
+      modal.classList.add('active');
+    }
+
+    function showCardModal(total) {
+      modalContent.innerHTML = `
+        <div class="modal-header"><h3>Pagamento com Cartão</h3><span class="close-modal">&times;</span></div>
+        <div class="card-form">
+          <p>Valor: <strong>R$ ${total.toFixed(2).replace('.', ',')}</strong></p>
+          <input type="text" id="card-number" placeholder="Número do Cartão" maxlength="19">
+          <input type="text" id="card-name" placeholder="Nome no Cartão">
+          <div class="card-row">
+            <input type="text" id="card-expiry" placeholder="Validade (MM/AA)" maxlength="5">
+            <input type="text" id="card-cvv" placeholder="CVV" maxlength="4">
+          </div>
+          <input type="text" id="card-installments" placeholder="Número de Parcelas (1-12)">
+          <button class="btn-pay" id="confirm-card">💳 Finalizar Pagamento</button>
+        </div>
+      `;
+      
+      const cardNumber = document.getElementById('card-number');
+      cardNumber.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, '').slice(0, 16);
+        value = value.replace(/(\d{4})/g, '$1 ').trim();
+        e.target.value = value;
+      });
+      
+      const cardExpiry = document.getElementById('card-expiry');
+      cardExpiry.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, '').slice(0, 4);
+        if (value.length >= 2) value = value.slice(0,2) + '/' + value.slice(2);
+        e.target.value = value;
+      });
+      
+      document.querySelector('.close-modal').onclick = () => modal.classList.remove('active');
+      document.getElementById('confirm-card').onclick = () => {
+        const cardNum = document.getElementById('card-number').value.replace(/\s/g, '');
+        const cardName = document.getElementById('card-name').value.trim();
+        const expiry = document.getElementById('card-expiry').value;
+        const cvv = document.getElementById('card-cvv').value;
+        
+        if (!cardNum || cardNum.length < 16) { alert("Número do cartão inválido!"); return; }
+        if (!cardName) { alert("Nome no cartão é obrigatório!"); return; }
+        if (!expiry || expiry.length < 5) { alert("Data de validade inválida!"); return; }
+        if (!cvv || cvv.length < 3) { alert("CVV inválido!"); return; }
+        
+        modal.classList.remove('active');
+        finalizeOrder(true);
+      };
+      modal.classList.add('active');
+    }
+
+    function finalizeOrder(paymentConfirmed = false) {
+      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      let resumoPedido = `Pedido #${Date.now()}\n\nTipo: ${deliveryType === "presencial" ? "Presencial" : "Entrega"}\n`;
+      
+      if (deliveryType === "presencial") {
+        const selectedTable = tableSelect.value;
+        if (!selectedTable) { alert("Selecione o número da mesa!"); return; }
+        resumoPedido += `Mesa: ${selectedTable}\nPagamento: Pagamento no Balcão\n\n`;
+        resumoPedido += `Itens do Pedido:\n`;
+        cart.forEach(item => { resumoPedido += `${item.qty}x ${item.name} - R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}\n`; });
+        resumoPedido += `\nTotal: R$ ${total.toFixed(2).replace('.', ',')}`;
+        
+        alert(`✅ Pedido enviado com sucesso!\n\n${resumoPedido}\n\n🏪 Seu pedido foi registrado! Dirija-se ao balcão para realizar o pagamento e retirar seus livros.\n\n📚 Aguardamos você no Ville's Coffee!`);
+        
+        cart = [];
+        tableSelect.value = "";
+        updateCart();
+        closeCart();
+      } else {
+        const customerName = document.getElementById('customer-name').value.trim();
+        const street = document.getElementById('street').value.trim();
+        const number = document.getElementById('number').value.trim();
+        const neighborhood = document.getElementById('neighborhood').value.trim();
+        const city = document.getElementById('city').value.trim();
+        const customerPhone = document.getElementById('customer-phone').value.trim();
+        
+        if (!customerName || !street || !number || !neighborhood || !city || !customerPhone) {
+          alert("Preencha todos os campos obrigatórios para entrega!");
+          return;
+        }
+        
+        resumoPedido += `Cliente: ${customerName}\nEndereço: ${street}, ${number}\nBairro: ${neighborhood}\nCidade: ${city}\nTelefone: ${customerPhone}\nPagamento: ${paymentMethod === 'pix' ? 'PIX' : 'Cartão de Crédito'}\n\n`;
+        cart.forEach(item => { resumoPedido += `${item.qty}x ${item.name} - R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}\n`; });
+        resumoPedido += `\nTotal: R$ ${total.toFixed(2).replace('.', ',')}`;
+        
+        alert(`✅ Pedido realizado com sucesso!\n\n${resumoPedido}\n\n🚚 Seu pedido será entregue no endereço informado em até 40 minutos!\n\n📚 Obrigado por comprar no Ville's Coffee!`);
+        
+        cart = [];
+        document.getElementById('customer-name').value = "";
+        document.getElementById('street').value = "";
+        document.getElementById('number').value = "";
+        document.getElementById('complement').value = "";
+        document.getElementById('neighborhood').value = "";
+        document.getElementById('city').value = "";
+        document.getElementById('zipcode').value = "";
+        document.getElementById('customer-phone').value = "";
+        document.getElementById('delivery-notes').value = "";
+        updateCart();
+        closeCart();
+      }
+    }
+
+    function processCheckout() {
+      if (cart.length === 0) { alert("Seu carrinho está vazio!"); return; }
+      
+      if (deliveryType === "presencial") {
+        finalizeOrder(true);
+      } else {
+        const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        if (paymentMethod === 'pix') showPixModal(total);
+        else if (paymentMethod === 'cartao') showCardModal(total);
+      }
+    }
+
+    function setupDeliverySystem() {
+      const presencialOption = document.querySelector('[data-type="presencial"]');
+      const entregaOption = document.querySelector('[data-type="entrega"]');
+      const presencialRadio = document.getElementById('presencial');
+      const entregaRadio = document.getElementById('entrega');
+
+      function updateDeliveryUI() {
+        if (deliveryType === "presencial") {
+          tableSelectorDiv.classList.add('active');
+          deliveryFormDiv.classList.remove('active');
+          presencialOption.classList.add('selected');
+          entregaOption.classList.remove('selected');
+        } else {
+          tableSelectorDiv.classList.remove('active');
+          deliveryFormDiv.classList.add('active');
+          entregaOption.classList.add('selected');
+          presencialOption.classList.remove('selected');
+        }
+        updatePaymentOptions();
+      }
+
+      presencialRadio.onchange = () => { if (presencialRadio.checked) { deliveryType = "presencial"; updateDeliveryUI(); } };
+      entregaRadio.onchange = () => { if (entregaRadio.checked) { deliveryType = "entrega"; updateDeliveryUI(); } };
+      updateDeliveryUI();
+    }
+
+    checkoutBtn.onclick = (e) => { e.stopPropagation(); processCheckout(); };
+
+    function renderBooks() {
+      booksGrid.innerHTML = '';
+      booksData.forEach(book => {
+        const bookCard = document.createElement('div');
+        bookCard.className = 'book-card';
+        if (selectedBookId === book.id) bookCard.classList.add('selected');
+        bookCard.innerHTML = `
+          <div class="book-image"><img src="${book.image}" alt="${book.name}"></div>
+          <div class="book-info">
+            <h3>${book.name}</h3>
+            <div class="book-author">${book.author}</div>
+            <div class="book-price">R$ ${book.price.toFixed(2).replace('.', ',')}</div>
+            <button class="btn-add-book" data-id="${book.id}">Adicionar ao Carrinho</button>
+          </div>
+        `;
+        bookCard.addEventListener('click', (e) => { if (!e.target.classList.contains('btn-add-book')) selectBook(book.id); });
+        bookCard.querySelector('.btn-add-book').addEventListener('click', (e) => { e.stopPropagation(); addToCart(book.name, book.price); });
+        booksGrid.appendChild(bookCard);
+      });
+    }
+
+    function selectBook(bookId) {
+      selectedBookId = bookId;
+      const book = booksData.find(b => b.id === bookId);
+      if (book) {
+        renderBooks();
+        sinopseArea.innerHTML = `
+          <div class="sinopse-header">
+            <h3>${book.name}</h3>
+            <div class="sinopse-author">por ${book.author}</div>
+          </div>
+          <div class="sinopse-content">${book.sinopse}</div>
+          <div class="sinopse-footer">
+            <div class="sinopse-price">R$ ${book.price.toFixed(2).replace('.', ',')}</div>
+            <button class="btn-add-from-sinopse" id="add-from-sinopse">Adicionar ao Carrinho</button>
+          </div>
+        `;
+        document.getElementById('add-from-sinopse').addEventListener('click', () => addToCart(book.name, book.price));
+      }
+    }
+
+    window.copyPixKey = (key) => {
+      navigator.clipboard.writeText(key);
+      alert("Chave PIX copiada com sucesso!");
+    };
+
+    function init() {
+      renderBooks();
+      if (booksData.length > 0) selectBook(booksData[0].id);
+      setupDeliverySystem();
+    }
+
+    const btnMenu = document.getElementById('btn-menu');
+    const sidebar = document.getElementById('sidebar');
+    btnMenu.onclick = (e) => { e.stopPropagation(); sidebar.classList.toggle('active'); closeCart(); };
+    document.onclick = (e) => {
+      if (!sidebar.contains(e.target) && !btnMenu.contains(e.target)) sidebar.classList.remove('active');
+      if (!cartSidebar.contains(e.target) && !cartTab.contains(e.target)) closeCart();
+    };
+    init();
+  </script>
+</body>
+</html>

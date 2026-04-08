@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ville's Coffee - Inicio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <svg class="svg-defs">
+    <defs>
+      <clipPath id="wave-mask" clipPathUnits="objectBoundingBox">
+        <path d="M0,0 L0.85,0 C0.95,0.15,0.75,0.3,0.9,0.45 C1,0.6,0.8,0.75,0.95,0.9 C1,0.95,0.9,1,0.85,1 L0,1 Z"></path>
+      </clipPath>
+    </defs>
+  </svg>
+
+  <header>
+    <h1>Ville's Coffee</h1>
+  </header>
+
+  <button id="btn-menu">☰ MENU</button>
+
+  <aside class="sidebar" id="sidebar">
+    <div style="font-size: 40px;">☕</div>
+    <h2>Explorar</h2>
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="Cardapio.html">Cardápio</a></li>
+      <li><a href="Livraria.html">Livraria</a></li>
+      <li><a href="AreaVerde.html">Área Verde</a></li>
+      <li><a href="SobreNos.html">Sobre Nós</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+    <h2>Sobre Nós</h2>
+    <p>Saiba um pouco dá nossa história!</p>
+  </main>
+
+  <script>
+    const btnMenu = document.getElementById('btn-menu');
+    const sidebar = document.getElementById('sidebar');
+
+    btnMenu.addEventListener('click', (e) => {
+      e.stopPropagation(); 
+      sidebar.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!sidebar.contains(event.target) && !btnMenu.contains(event.target)) {
+        sidebar.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

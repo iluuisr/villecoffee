@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ville's Coffee - Início</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="cart-tab">
+    <span>🛒 Carrinho</span>
+    <span id="cart-count">0</span>
+  </div>
+
+  <div id="cart-sidebar" class="cart-sidebar">
+    <div class="cart-header">
+      <h2>Seu Pedido</h2>
+      <span class="close-cart" id="close-cart-btn">×</span>
+    </div>
+    
+    <ul id="cart-items-list"></ul>
+
+    <div class="cart-footer">
+      <div class="table-selector">
+        <label for="table-number">Mesa:</label>
+        <select id="table-number">
+          <option value="">Selecione a mesa</option>
+          <option value="1">Mesa 1</option>
+          <option value="2">Mesa 2</option>
+          <option value="3">Mesa 3</option>
+          <option value="4">Mesa 4</option>
+          <option value="5">Mesa 5</option>
+          <option value="6">Mesa 6</option>
+          <option value="7">Mesa 7</option>
+          <option value="8">Mesa 8</option>
+          <option value="9">Mesa 9</option>
+          <option value="10">Mesa 10</option>
+        </select>
+      </div>
+      <div id="cart-total">Total: R$ 0,00</div>
+      <button class="btn-checkout" id="checkout-btn">Fazer Pedido</button>
+    </div>
+  </div>
+
+  <header>
+    <h1>Ville's Coffee</h1>
+  </header>
+
+  <button id="btn-menu">☰ EXPLORAR</button>
+
+  <aside class="sidebar" id="sidebar">
+    <div style="font-size: 40px; margin-bottom: 20px;">☕</div>
+    <h2>Explorar</h2>
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="Cardapio.html">Cardápio</a></li>
+      <li><a href="Livraria.html">Livraria</a></li>
+      <li><a href="AreaVerde.html">Área Verde</a></li>
+      <li><a href="SobreNos.html">Sobre Nós</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+    <h2 class="section-title">Nossas Especialidades ☕</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-image"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=500" alt="Cappuccino"></div>
+        <div class="product-info">
+          <h3>Cappuccino</h3>
+          <p class="price">R$ 14,90</p>
+          <div class="product-buttons"><button class="btn-cart">🛒 Adicionar</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image"><img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=500" alt="Café Espresso"></div>
+        <div class="product-info">
+          <h3>Café Espresso</h3>
+          <p class="price">R$ 27,00</p>
+          <div class="product-buttons"><button class="btn-cart">🛒 Adicionar</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=500" alt="Café Tradicional"></div>
+        <div class="product-info">
+          <h3>Café Tradicional</h3>
+          <p class="price">R$ 25,00</p>
+          <div class="product-buttons"><button class="btn-cart">🛒 Adicionar</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image"><img src="https://images.unsplash.com/photo-1544787210-2211d44b565c?q=80&w=500" alt="Chá Quente"></div>
+        <div class="product-info">
+          <h3>Chá Quente</h3>
+          <p class="price">R$ 25,00</p>
+          <div class="product-buttons"><button class="btn-cart">🛒 Adicionar</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=500" alt="Chá Gelado"></div>
+        <div class="product-info">
+          <h3>Chá Gelado</h3>
+          <p class="price">R$ 27,00</p>
+          <div class="product-buttons"><button class="btn-cart">🛒 Adicionar</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=500" alt="Soda Italiana"></div>
+        <div class="product-info">
+          <h3>Soda Italiana</h3>
+          <p class="price">R$ 26,00</p>
+          <div class="product-buttons"><button class="btn-cart">🛒 Adicionar</button></div>
+        </div>
+      </div>
+    </div> 
+
+    <h2 class="section-title">Para saborear e aproveitar</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-image"><img src="https://images.unsplash.com/photo-1598143153002-f5830048aa45?q=80&w=500" alt="Pão de Queijo"></div>
+        <div class="product-info">
+          <h3>Pão de Queijo</h3>
+          <p class="price">R$ 10,00</p>
+          <div class="product-buttons"><button class="btn-cart">🛒 Adicionar</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=500" alt="Croissant"></div>
+        <div class="product-info">
+          <h3>Croissant</h3>
+          <p class="price">R$ 17,00</p>
+          <div class="product-buttons"><button class="btn-cart">🛒 Adicionar</button></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image"><img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=500" alt="Toast"></div>
+        <div class="product-info">
+          <h3>Toast</h3>
+          <p class="price">R$ 17,00</p>
+          <div class="product-buttons"><button class="btn-cart">🛒 Adicionar</button></div>
+        </div>
+      </div>
+    </div> 
+  </main>
+
+  <script>
+    let cart = [];
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const cartTab = document.getElementById('cart-tab');
+    const closeCartBtn = document.getElementById('close-cart-btn');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const tableSelect = document.getElementById('table-number');
+
+    function openCart() {
+      cartSidebar.classList.add('active');
+    }
+
+    function closeCart() {
+      cartSidebar.classList.remove('active');
+    }
+
+    cartTab.onclick = (e) => {
+      e.stopPropagation();
+      cartSidebar.classList.toggle('active');
+    };
+
+    closeCartBtn.onclick = (e) => {
+      e.stopPropagation();
+      closeCart();
+    };
+
+    // Função para atualizar a quantidade
+    function updateQuantity(name, delta, event) {
+      if (event) {
+        event.stopPropagation();
+      }
+      
+      const index = cart.findIndex(i => i.name === name);
+      if (index !== -1) {
+        const newQty = cart[index].qty + delta;
+        if (newQty <= 0) {
+          cart.splice(index, 1);
+        } else {
+          cart[index].qty = newQty;
+        }
+        updateCart();
+      }
+    }
+
+    // Função para adicionar item ao carrinho
+    function addToCart(name, price) {
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCart();
+      openCart();
+    }
+
+    // Adicionar eventos aos botões de carrinho
+    document.querySelectorAll('.btn-cart').forEach(button => {
+      button.onclick = function(e) {
+        e.stopPropagation();
+        const info = this.closest('.product-info');
+        const name = info.querySelector('h3').innerText;
+        const price = parseFloat(info.querySelector('.price').innerText.replace('R$ ', '').replace(',', '.'));
+        addToCart(name, price);
+      };
+    });
+
+    function updateCart() {
+      const list = document.getElementById('cart-items-list');
+      const count = document.getElementById('cart-count');
+      const totalEl = document.getElementById('cart-total');
+      
+      list.innerHTML = '';
+      let sum = 0;
+      let qtyTotal = 0;
+
+      if (cart.length === 0) {
+        list.innerHTML = '<div class="empty-cart">🛒 Seu carrinho está vazio</div>';
+      } else {
+        cart.forEach(item => {
+          const li = document.createElement('li');
+          li.className = 'cart-item';
+          li.innerHTML = `
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
+            </div>
+            <div class="cart-item-controls">
+              <button class="qty-minus" data-name="${item.name}">-</button>
+              <span>${item.qty}</span>
+              <button class="qty-plus" data-name="${item.name}">+</button>
+            </div>
+            <div class="cart-item-total">
+              R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}
+            </div>
+          `;
+          list.appendChild(li);
+          sum += item.price * item.qty;
+          qtyTotal += item.qty;
+        });
+
+        // Adicionar eventos aos botões de quantidade
+        document.querySelectorAll('.qty-minus').forEach(btn => {
+          btn.onclick = (e) => {
+            e.stopPropagation();
+            const name = btn.getAttribute('data-name');
+            updateQuantity(name, -1, e);
+          };
+        });
+
+        document.querySelectorAll('.qty-plus').forEach(btn => {
+          btn.onclick = (e) => {
+            e.stopPropagation();
+            const name = btn.getAttribute('data-name');
+            updateQuantity(name, 1, e);
+          };
+        });
+      }
+
+      count.innerText = qtyTotal;
+      totalEl.innerText = `Total: R$ ${sum.toFixed(2).replace('.', ',')}`;
+    }
+
+    function finalizarPedido() {
+      if (cart.length === 0) {
+        alert("Seu carrinho está vazio! Escolha uma delícia antes de pedir.");
+        return;
+      }
+
+      const selectedTable = tableSelect.value;
+      if (!selectedTable) {
+        alert("Por favor, selecione o número da mesa antes de finalizar o pedido!");
+        return;
+      }
+
+      // Criar resumo do pedido
+      let resumoPedido = `Pedido para a Mesa ${selectedTable}\n\n`;
+      cart.forEach(item => {
+        resumoPedido += `${item.qty}x ${item.name} - R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}\n`;
+      });
+      resumoPedido += `\nTotal: R$ ${cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toFixed(2).replace('.', ',')}`;
+      
+      alert(`✅ Pedido enviado com sucesso para a cozinha!\n\n${resumoPedido}\n\n☕ Aguarde, seu pedido será entregue na Mesa ${selectedTable}!`);
+      
+      cart = [];
+      tableSelect.value = ""; // Resetar seleção da mesa
+      updateCart();
+      closeCart();
+    }
+
+    // Evento do botão de finalizar pedido
+    checkoutBtn.onclick = (e) => {
+      e.stopPropagation();
+      finalizarPedido();
+    };
+
+    const btnMenu = document.getElementById('btn-menu');
+    const sidebar = document.getElementById('sidebar');
+    
+    btnMenu.onclick = (e) => {
+      e.stopPropagation(); 
+      sidebar.classList.toggle('active');
+      closeCart(); 
+    };
+
+    // Fecha apenas quando clica fora
+    document.onclick = (e) => {
+      if (!sidebar.contains(e.target) && !btnMenu.contains(e.target)) {
+        sidebar.classList.remove('active');
+      }
+      if (!cartSidebar.contains(e.target) && !cartTab.contains(e.target)) {
+        closeCart();
+      }
+    };
+  </script>
+</body>
+</html>
